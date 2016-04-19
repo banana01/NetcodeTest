@@ -25,7 +25,8 @@ public class Main
 	    else
 	    {
 	    	Client c = new Client();
-	    	c.connect(4444, "");
+	    	System.out.println("INPUT THE IP of the server");
+	    	c.connect(4444, key.nextLine());
 	    }
 	}
 	public static void getIps() throws UnknownHostException, SocketException
