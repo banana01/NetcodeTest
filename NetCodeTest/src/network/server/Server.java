@@ -15,16 +15,12 @@ public class Server
 		String inputLine,outputLine;
 		
 		SS = new ServerSocket(port);
+		System.out.println("Waiting for connection!");
 		Socket clientSoc = SS.accept();
 		PrintWriter out = new PrintWriter(clientSoc.getOutputStream(), true);
 		BufferedReader in = new BufferedReader(new InputStreamReader(clientSoc.getInputStream()));
-		System.out.println("Waiting for connection");
-		while ((inputLine = in.readLine()) != null) {
-			System.out.println("CONNECTED");
-	        outputLine = "HAHAHAYOUVE CONNECTED";
-	        out.println(outputLine);
-	        if (outputLine.equals("Bye."))
-	            break;
-	    }
-	}
+		System.out.println("Connected");
+		out.println("THIS IS THE SERVER SPEAKING!");
+	 }
+	
 }

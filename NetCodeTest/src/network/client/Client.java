@@ -17,18 +17,10 @@ public class Client
 		    Socket kkSocket = new Socket(hostName, portNumber);
 		    PrintWriter out = new PrintWriter(kkSocket.getOutputStream(), true);
 		    BufferedReader in = new BufferedReader(new InputStreamReader(kkSocket.getInputStream()));
-		   System.out.println("connected");
-		    while ((fromServer = in.readLine()) != null) {
-		        System.out.println("Server: " + fromServer);
-		        if (fromServer.equals("Bye."))
-		            break;
-		        
-		        fromUser = stdIn.nextLine();
-		        if (fromUser != null) {
-		            System.out.println("Client: " + fromUser);
-		            out.println(fromUser);
-		        }
-		    }
-		
+		    System.out.println("connected");
+		    
+		    
 	}
+
+	
 }
