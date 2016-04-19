@@ -12,9 +12,19 @@ public class Server
 	ServerSocket SS;
 	public void createServer(int port) throws IOException
 	{
+		String inputLine,outputLine;
+		
 		SS = new ServerSocket(port);
 		Socket clientSoc = SS.accept();
 		PrintWriter out = new PrintWriter(clientSoc.getOutputStream(), true);
 		BufferedReader in = new BufferedReader(new InputStreamReader(clientSoc.getInputStream()));
+		System.out.println("Waiting for connection");
+		while ((inputLine = in.readLine()) != null) {
+			System.out.println("CONNECTED");
+	        outputLine = "HAHAHAYOUVE CONNECTED";
+	        out.println(outputLine);
+	        if (outputLine.equals("Bye."))
+	            break;
+	    }
 	}
 }
