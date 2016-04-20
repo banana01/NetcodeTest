@@ -25,7 +25,7 @@ public class Main
 	    else
 	    {
 	    	Client c = new Client();
-	    	System.out.println("INPUT THE IP of the server");
+	    	System.out.println("Input the IP of the server::");
 	    	c.connect(4444, key.nextLine());
 	    }
 	}
