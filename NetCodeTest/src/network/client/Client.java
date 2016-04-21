@@ -21,7 +21,7 @@ public class Client
 		    Socket kkSocket = new Socket(hostName, portNumber);
 		    PrintWriter out = new PrintWriter(kkSocket.getOutputStream(), true);
 		    BufferedReader in = new BufferedReader(new InputStreamReader(kkSocket.getInputStream()));
-		    System.out.println("connected");
+		    System.out.println("Connected");
 		    while((line = in.readLine())!= null)
 		    {
 		    	if(line.equals("_S_"))
@@ -36,9 +36,8 @@ public class Client
 		    	else 
 		    	{
 		    		sb.append(line);
-				}
+				} 
 		    }
-		    
 		    
 		    
 		    
