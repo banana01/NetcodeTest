@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
+
+import network.client.Client;
+import network.protocol.MessageProtocol;
 
 public class ClientHandler extends Thread
 {
@@ -18,32 +22,49 @@ public class ClientHandler extends Thread
 	}
 	public void run()
 	{
-		String line;
-		StringBuilder sb = null;
+		String INline,OUTline,MESSAGE;
+		StringBuilder SB = null;
 		try {
 			PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
+			MessageProtocol MP = new MessageProtocol();
 			BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
-			out.println("THIS IS A SERVER");
-			while((line = in.readLine())!= null)
-		    {
-		    	if(line.equals("_S_"))
-		    	{
-		    		sb = new StringBuilder();
-		    	}
-		    	else if(line.equals("_E_"))
-		    	{
-		    		System.out.println(sb.toString());
-		    		sb.delete(0, sb.length());
-		    	}
-		    	else 
-		    	{
-		    		sb.append(line);
-				} 
-		    }
+			System.out.println("Connected To::"+soc.getRemoteSocketAddress().toString());
+			out.println(MP.genMessage("THIS IS A MESSAGE!"));
+			while(true)
+			{
+				while((INline = in.readLine())!= null)
+			    {
+					if(MP.parseMessage(INline) == MessageProtocol.MESSAGE_START)
+					{
+						SB = new StringBuilder();
+					}
+					else if(MP.parseMessage(INline) == MessageProtocol.MESSAGE_END)
+					{
+						SB.delete(0, SB.length());
+						break;
+					}
+					else if(INline.contains(MessageProtocol.DISCONNECTING))
+					{
+						System.out.println("Client Disconnecting"+soc.getRemoteSocketAddress().toString());
+						soc.close();
+						return;
+					}
+					else
+					{
+						SB.append(INline);
+					}
+					System.out.println(SB.toString());
+					
+			    }
+				
+			}
+			
 		} catch (IOException e) 
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(e.getMessage().equals("Connection reset"))
+			{
+				System.out.println("client reset connection");
+			}
 		}
 		
 	}
