@@ -9,6 +9,7 @@ import java.util.Enumeration;
 import java.util.Scanner;
 
 import network.client.Client;
+import network.client.ClientV2;
 import network.server.Server;
 
 public class Main 
@@ -24,9 +25,9 @@ public class Main
 	    }
 	    else
 	    {
-	    	Client c = new Client();
+	    	
 	    	System.out.println("Input the IP of the server::");
-	    	c.connect(4444, key.nextLine());
+	    	ClientV2 c = new ClientV2(key.nextLine() ,4444);
 	    }
 	}
 	public static void getIps() throws UnknownHostException, SocketException

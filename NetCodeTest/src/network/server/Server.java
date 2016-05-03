@@ -24,22 +24,6 @@ public class Server
 			ClientHandler ch = new ClientHandler(clientSoc);
 			ch.start();
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	 }
 	
 }

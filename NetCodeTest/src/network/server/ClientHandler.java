@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Scanner;
 
 import network.client.Client;
 import network.protocol.MessageProtocol;
@@ -26,6 +27,8 @@ public class ClientHandler extends Thread
 		String INline,OUTline,MESSAGE;
 		StringBuilder SB = null;
 		try {
+			Scanner stdIn = new Scanner(System.in);
+			Boolean DC = false;
 			PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
 			MessageProtocol MP = new MessageProtocol();
 			BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
@@ -57,7 +60,12 @@ public class ClientHandler extends Thread
 					System.out.println(SB.toString());
 					
 			    }
-				
+				OUTline = stdIn.nextLine();
+		    	if(OUTline.equals("DC_ME_PLZ"))
+		    	{
+		    		DC = true;
+		    	}
+		    	out.println(MP.genMessage(stdIn.nextLine()));
 			}
 			
 		} catch (IOException e) 

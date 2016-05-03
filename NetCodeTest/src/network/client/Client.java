@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import javax.activation.DataContentHandler;
+
 import org.omg.CORBA.VersionSpecHelper;
 
 import network.protocol.MessageProtocol;
@@ -17,7 +19,8 @@ public class Client
 	private static final String ver = "0.0.1";
 	public void connect(int portNumber, String hostName) throws UnknownHostException, IOException
 	{
-			String INline,OUTline,MESSAGE;
+			/*String INline,OUTline,MESSAGE;
+			Boolean DC = false;
 			StringBuilder SB = null;
 			Scanner stdIn = new Scanner(System.in);
 		    Socket kkSocket = new Socket(hostName, portNumber);
@@ -49,11 +52,22 @@ public class Client
 					System.out.println(SB.toString());
 					
 			    }
-		    	break;
+		    	if(DC)
+		    	{
+		    		break;
+		    	}
+		    	OUTline = stdIn.nextLine();
+		    	if(OUTline.equals("DC_ME_PLZ"))
+		    	{
+		    		DC = true;
+		    	}
+		    	out.println(MP.genMessage(stdIn.nextLine()));
+		    	
 		    }
 		    out.println(MP.genMessage(MessageProtocol.DISCONNECTING));
 		    kkSocket.close();
-		    
+		    stdIn.close();
+		    */
 		    
 		    
 		    

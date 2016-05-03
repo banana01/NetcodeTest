@@ -6,7 +6,7 @@ public class MessageProtocol
 {
 	public static final String START = "_S_T", END = "_E_N", DISCONNECTING = "45671_FF";
 	public static final int MESSAGE_START=2, MESSAGE_END=3, INVALID_INPUT=1;
-	public int parseMessage(String in)
+	public static int parseMessage(String in)
 	{
 		switch(in)
 		{
@@ -17,7 +17,7 @@ public class MessageProtocol
 		}
 		return INVALID_INPUT;
 	}
-	public String genMessage(String in) 
+	public static String genMessage(String in) 
 	{
 		StringBuilder SB = new StringBuilder(in);
 		SB.append("\n"+END);
