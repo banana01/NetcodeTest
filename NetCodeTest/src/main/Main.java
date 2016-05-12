@@ -21,7 +21,7 @@ public class Main
 	    if(key.nextLine().contains("server"))
 	    {
 	    	Server s = new Server();
-	    	s.createServer(4444);
+	    	s.acceptConnection(4444);
 	    }
 	    else
 	    {
